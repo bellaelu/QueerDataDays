@@ -1,0 +1,34 @@
+
+genderSeparationT <- read.csv("UpdatedTeacherQuery.csv")
+
+otherGenders <- genderSeparationT[!(genderSeparationT$genderLabel %in% c("male", "female")), ]
+
+otherCount <- sum(otherGenders$count)
+
+combinedData <- data.frame(genderLabel = c("male", "female", "Other"),
+                           count = c(sum(genderSeparationT$count[genderSeparationT$genderLabel == "male"]),
+                                     sum(genderSeparationT$count[genderSeparationT$genderLabel == "female"]),
+                                     otherCount))
+
+totalCountT <- sum(combinedData$count)
+
+combinedData <- rbind(combinedData, data.frame(genderLabel = "Unlabeled", count = 23733))
+
+totalCountT <- sum(combinedData$count)
+
+combinedData$percent <- combinedData$count / totalCountT * 100
+
+combinedData$percent <- sprintf("%.2f", combinedData$percent)
+
+genderSeparationPCT <- ggplot(combinedData, aes(x = "", y = count, fill = genderLabel)) +
+  geom_bar(width = 1, stat = "identity") +
+  geom_label_repel(aes(label = paste0(genderLabel, ": ", percent, "%")), 
+                   position = position_stack(vjust = 0.5), color = "black", size = 4,
+                   box.padding = unit(0.5, "lines"), max.overlaps = Inf) + 
+  coord_polar("y", start = 0) +  
+  theme_void() +  
+  scale_fill_manual(values = c("male" = "green", "female" = "yellow", "Other" = "orange", "Unlabeled" = "lightblue")) +
+  theme(legend.position = "none")
+
+# Print the plot
+print(genderSeparationPCT)
