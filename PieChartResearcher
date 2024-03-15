@@ -1,0 +1,25 @@
+#Creation of first pie chart 
+
+library(tidyverse)
+library(ggplot2)
+library(ggrepel)
+library(dplyr)
+
+genderSeparation <- read.csv("DelQueryGenderResearcher.csv")
+
+newGenderDat <- genderSeparation[genderSeparation$genderLabel %in% c("male", "female"), ]
+
+totalCount <- sum(newGenderDat$count)
+
+genderSeparationPC <- ggplot(newGenderDat, aes(x = "", y = count, fill = genderLabel, 
+                                                label = paste0(genderLabel, ": ", round(count/totalCount * 100, 2), "%"))) +
+  geom_bar(width = 1, stat = "identity", color = "black") +
+  geom_text_repel(aes(label = paste0(genderLabel, ": ", round(count/totalCount * 100, 1), "%")), 
+                  position = position_stack(vjust = 0.5), color = "black", size = 4,
+                  box.padding = unit(0.35, "lines")) +  
+  coord_polar("y", start = 0) +  
+  theme_void() +  
+  scale_fill_manual(values = c("yellow", "green")) +
+  theme(legend.position = "none")
+
+genderSeparationPC
