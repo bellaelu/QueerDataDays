@@ -8,7 +8,7 @@ Attached in this repository is my presentation as well as the code I used to gen
 
 # Code Languages Used 
 
-- For initial queries:SPARQL programming language
+- For initial queries: SPARQL programming language
 - For analytical graphs: R programming language
 
 Enjoy!
