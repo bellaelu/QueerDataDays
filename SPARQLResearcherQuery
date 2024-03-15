@@ -1,0 +1,8 @@
+SELECT (COUNT(?person) AS ?count) ?gender ?genderLabel  WHERE {
+SERVICE bd:sample { ?person wdt:P106  wd:Q1650915. bd:serviceParam bd:sample.limit 100000 }
+  ?person wdt:P21 ?gender .
+  ?gender rdfs:label ?genderLabel .
+  FILTER(LANG(?genderLabel) = "en")
+}
+GROUP BY ?gender ?genderLabel
+order by desc(?count)
