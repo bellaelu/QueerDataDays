@@ -6,4 +6,9 @@ Recently I was presented an opportunity to present my findings at the Queer Data
 
 Attached in this repository is my presentation as well as the code I used to generate the plots within the presentation. 
 
+# Code Languages Used 
+
+For initial queries: SPARQL programming language 
+For analytical graphs: R programming language
+
 Enjoy!
