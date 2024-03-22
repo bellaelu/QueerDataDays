@@ -1,5 +1,3 @@
-#Creation of first pie chart 
-
 library(tidyverse)
 library(ggplot2)
 library(ggrepel)
@@ -23,3 +21,4 @@ genderSeparationPC <- ggplot(newGenderDat, aes(x = "", y = count, fill = genderL
   theme(legend.position = "none")
 
 genderSeparationPC
+#Generated part of code with AI assistance 
