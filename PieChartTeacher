@@ -30,5 +30,5 @@ genderSeparationPCT <- ggplot(combinedData, aes(x = "", y = count, fill = gender
   scale_fill_manual(values = c("male" = "green", "female" = "yellow", "Other" = "orange", "Unlabeled" = "lightblue")) +
   theme(legend.position = "none")
 
-# Print the plot
 print(genderSeparationPCT)
+#Generated part of code with AI assistance 
