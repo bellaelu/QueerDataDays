@@ -6,3 +6,4 @@ SERVICE bd:sample { ?person wdt:P106  wd:Q1650915. bd:serviceParam bd:sample.lim
 }
 GROUP BY ?gender ?genderLabel
 order by desc(?count)
+#Generated part of code with AI assistance 
