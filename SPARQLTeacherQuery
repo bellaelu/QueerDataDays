@@ -11,3 +11,4 @@ SELECT (COUNT(?person) AS ?count) ?gender ?genderLabel WHERE {
 }
 GROUP BY ?gender ?genderLabel
 ORDER BY DESC(?count)
+#Generated part of code with AI assistance 
