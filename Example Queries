@@ -1,0 +1,43 @@
+#gender distribution of individuals with research occupation
+SELECT (COUNT(?person) AS ?count) ?gender ?genderLabel
+WHERE {
+  ?person wdt:P106 wd:Q1650915.
+  ?person wdt:P21 ?gender.
+  ?gender rdfs:label ?genderLabel.
+  FILTER(LANG(?genderLabel) = "en")
+}
+GROUP BY ?gender ?genderLabel
+ORDER BY DESC(?count)
+
+#gender distribution of individuals with teacher occupation
+SELECT (COUNT(?person) AS ?count) ?gender ?genderLabel
+WHERE {
+  ?person wdt:P106 wd:Q37226.
+  ?person wdt:P21 ?gender.
+  ?gender rdfs:label ?genderLabel.
+  FILTER(LANG(?genderLabel) = "en")
+}
+GROUP BY ?gender ?genderLabel
+ORDER BY DESC(?count)
+
+#geographic distribution of individuals with research occupation
+SELECT (COUNT(?person) AS ?count) ?country ?countryLabel
+WHERE {
+  ?person wdt:P106 wd:Q1650915.
+  ?person wdt:P27 ?country.
+  ?country rdfs:label ?countryLabel.
+  FILTER(LANG(?countryLabel) = "en")
+}
+GROUP BY ?country ?countryLabel
+ORDER BY DESC(?count)
+
+#Average income by geographic region
+SELECT ?countryLabel (AVG(?income) AS ?averageIncome)
+WHERE {
+  ?person wdt:P27 ?country.
+  ?country rdfs:label ?countryLabel.
+  FILTER(LANG(?countryLabel) = "en")
+  OPTIONAL { ?person wdt:P1082 ?income. }
+}
+GROUP BY ?countryLabel
+ORDER BY ?countryLabel
